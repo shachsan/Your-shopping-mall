@@ -1,11 +1,39 @@
 # Add seed data here. Seed your database with `rake db:seed`
 
 # Movie.create(title: "Wargames", release_date: 1983, director: "John Badham", lead: "Matthew Broderick", in_theaters: false)
+# create_table "products",
+#   t.string "name"
+#   t.float "price"
+#   t.integer "quantity"
+#   t.integer "category_id"
+# need to add following columns to products table in database
+  #gender
+  #size
+  #color
+Product.create(name: "Mens T-shirt size - L", price: 35.50, quantity: 30, category_id: 2 )
+create_table "categories", force: :cascade do |t|
+  t.string "name"
+end
+
+# create_table "categories"
+#   t.string "name"
+# end
+
+Catagory.create(name:"clothing")
+
+# create_table "customers"
+#   t.string "name"
+# end
+
+Customer.create(name: "John")
 #
-# Movie.create(title: "The Sting", release_date: 1973, director: "George Roy Hill", lead: "Paul Newman", in_theaters: false)
+# create_table "orderproducts"
+#   t.integer "order_id"
+#   t.integer "product_id"
+# end
 #
-# Movie.create(title: "Nebraska", release_date: 2013, director: "Alexander Payne", lead: "Bruce Dern", in_theaters: true)
-#
-# Movie.create(title: "Muppets Most Wanted", release_date: 2014, director: "James Bobin", lead: "Tom Hiddleston", in_theaters: true)
-#
-# Movie.create(title: "Zero Dark Thirty", release_date: 2012, director: "Kathryn Bigelow", lead: "Jessica Chastain", in_theaters: false)
+# create_table "orders"
+#   t.integer "customer_id"
+#   t.integer "orderproduct_id"
+#   t.float "payment"
+# end
