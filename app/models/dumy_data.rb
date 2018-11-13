@@ -1,7 +1,7 @@
-require "pry"
-require_relative 'convert'
+require 'pry'
 
-products = [
+def dumy_data
+	[
 	{
 		"productSize": "",
 		"item": "DELUXE COOKED HAM",
@@ -3945,5 +3945,4 @@ products = [
 		"uom": "EA"
 	}
 ]
-
-convert(products)
+end
