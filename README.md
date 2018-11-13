@@ -1,43 +1,52 @@
-# YourShoppingMall
+##product class
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/your_shopping_mall`. To experiment with that code, run `bin/console` for an interactive prompt.
+has many products each containing many items
+has many orders through sale
 
-TODO: Delete this and the text above, and describe your gem
+##join
 
-## Installation
+product to order relationship |have a product id joined to an order id + quantity|
 
-Add this line to your application's Gemfile:
+##order
 
-```ruby
-gem 'your_shopping_mall'
-```
 
-And then execute:
+has one customer |have customer id|
+has many products
 
-    $ bundle
+##customer
 
-Or install it yourself as:
+has many orders
 
-    $ gem install your_shopping_mall
 
-## Usage
 
-TODO: Write usage instructions here
+####methods
 
-## Development
+a customer should be able to create an order |instance method|
+an order should add items to it's order |class method|
+a products quantity should be able to adjust |class method|
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/your_shopping_mall. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the YourShoppingMall project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/your_shopping_mall/blob/master/CODE_OF_CONDUCT.md).
+##program running
+file is run
+a name is entered
+looks up the name (where)
+or a customer method is created
+get all the categories
+save name into an array
+output name
+customer chooses category
+validate input by comparing to array
+look up item (find_by)  
+return item list save into array
+get input for an item name and quantity
+compare to quantity existing
+search array if item exists so we can combine if its the same item
+save the item object with quantity into an array by grabbing from existing array
+output "checkout or continue shopping"
+back to selecting item
+#checkout process:
+create an order instance and get the id
+save all items to itemproduct table having the order id as self
+change quantity in product table
+output the total from array

@@ -3,9 +3,13 @@ class Order < ActiveRecord::Base
   has_many :orderproducts
   has_many :products, through: :orderproducts
 
-def select_item(product)
-  #create new itemProduct instance without saving
-  
+def select_item(product_id, quantity)
+  #create new itemProduct instance without saving with quantity
+  Orderproduct.new(self.id , product_id, quantity)
+end
+
+
+
 
 
 
