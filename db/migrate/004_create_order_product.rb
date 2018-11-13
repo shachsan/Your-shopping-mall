@@ -1,4 +1,4 @@
-class CreateOrderProduct < ActiveRecord::Migration
+class CreateOrderProduct < ActiveRecord::Migration[4.2]
 
   def change
     create_table :orderproducts do |t|
@@ -6,5 +6,5 @@ class CreateOrderProduct < ActiveRecord::Migration
       t.integer :product_id
     end
   end
-  
+
 end
