@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 6) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 5) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
-    t.integer "orderproduct_id"
     t.float "payment"
   end
 
