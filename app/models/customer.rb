@@ -1,3 +1,7 @@
+
+require "highline/import"
+require_relative "../main_screen.rb"
+
 class Customer < ActiveRecord::Base
   # attr_accessor :order_total
   has_many :orders
@@ -16,13 +20,7 @@ class Customer < ActiveRecord::Base
 
   ##As a customer, I should be able to place an order
   def customer_selection(customer_items) #[[product_id, qty]]
-    #This method takes an instance of customer_selected_items which has following attributes:
-        #productid, qty
-    #Instance should be created as soon as customer finished selecting items
 
-    #Once the customer finished selecting products
-    #customer should be able to see list of items selected
-    # order_total = 0
     customer_items.each do |item_qty|
       puts "ProductId: #{item_qty[0]}"
       puts "Product Name: #{Product.where(id:item_qty[0]).first.name}"
@@ -32,6 +30,17 @@ class Customer < ActiveRecord::Base
       puts "******************************"
       puts "Order Total: #{@@order_total}"
       puts "******************************"
+      puts
+      puts "press 1 for yes"
+      puts "press 2 to cancel"
+      proceed_order = ask("Would you like to go ahead and place this order?")
+
+      if proceed_order == "1"
+        place_order(customer_items)
+      else
+        menu
+      end
+
   end
 
   def place_order(customer_items)#[[product_id, qty]]
