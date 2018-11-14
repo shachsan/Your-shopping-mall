@@ -52,22 +52,23 @@ Customer.create(name: "Kevin")
 #   t.integer "product_id"
 # end
 
-Orderproduct.create(order_id:1, product_id:1)
-Orderproduct.create(order_id:1, product_id:2)
-Orderproduct.create(order_id:1, product_id:3)
-Orderproduct.create(order_id:2, product_id:2)
-Orderproduct.create(order_id:2, product_id:3)
-Orderproduct.create(order_id:2, product_id:4)
+Orderproduct.create(order_id:1, product_id:1, ordered_qty:2)
+Orderproduct.create(order_id:2, product_id:2, ordered_qty:1)
+Orderproduct.create(order_id:3, product_id:3, ordered_qty:1)
+Orderproduct.create(order_id:4, product_id:2, ordered_qty:1)
+Orderproduct.create(order_id:5, product_id:3, ordered_qty:2)
+Orderproduct.create(order_id:6, product_id:4, ordered_qty:2)
+Orderproduct.create(order_id:7, product_id:6, ordered_qty:1)
 # #
 # # create_table "orders"
 # #   t.integer "customer_id"
 # #   t.integer "orderproduct_id"
-# #   t.float "payment"
+# #   t.float "order_date"
 # # end
-Order.create(customer_id:1, payment: 50.0)
-Order.create(customer_id:2, payment: 150.0)
-Order.create(customer_id:3, payment: 500.0)
-Order.create(customer_id:4, payment: 250.0)
-Order.create(customer_id:5, payment: 100.0)
-Order.create(customer_id:1, payment: 90.0)
-Order.create(customer_id:2, payment: 40.0)
+Order.create(customer_id:1)
+Order.create(customer_id:2)
+Order.create(customer_id:3)
+Order.create(customer_id:4)
+Order.create(customer_id:5)
+Order.create(customer_id:1)
+Order.create(customer_id:2)

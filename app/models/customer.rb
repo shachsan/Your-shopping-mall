@@ -1,29 +1,38 @@
 class Customer < ActiveRecord::Base
+  # attr_accessor :order_total
   has_many :orders
-  has_many :products, through: :orders
+  has_many :orderproducts, through: :orders
+  has_many :products, through: :orderproducts
 
+  @@order_total = 0
+
+  # def self.order_total
+  #   @@order_total
+  # end
 
   ##As a customer, I should be able to place an order
-  def self.customer_selection(customer_items) #[[product_id, qty]]
+  def customer_selection(customer_items) #[[product_id, qty]]
     #This method takes an instance of customer_selected_items which has following attributes:
         #productid, qty
     #Instance should be created as soon as customer finished selecting items
 
     #Once the customer finished selecting products
     #customer should be able to see list of items selected
-    order_total = 0
+    # order_total = 0
     customer_items.each do |item_qty|
       puts "ProductId: #{item_qty[0]}"
       puts "Product Name: #{Product.where(id:item_qty[0]).first.name}"
       puts "Qty: #{item_qty[1]}"
-      order_total += Product.where(id:item_qty[0]).first.price * item_qty[1]
+      @@order_total += Product.where(id:item_qty[0]).first.price * item_qty[1]
     end
-      puts "************************"
-      puts "Order Total: #{order_total}"
+      puts "******************************"
+      puts "Order Total: #{@@order_total}"
+      puts "******************************"
   end
 
   def place_order(customer_items)#[[product_id, qty]]
-    orderid = Order.create(customer_id:self.id).id
+    orderid = Order.create(customer_id:self.id, order_total:@@order_total).id
+    # binding.pry
     customer_items.each do |item_qty|
       Orderproduct.create(order_id:orderid, product_id:item_qty[0], ordered_qty:item_qty[1])
       update_qty = Product.where(id:item_qty[0]).first.quantity -= item_qty[1]
@@ -32,8 +41,9 @@ class Customer < ActiveRecord::Base
 
   end
 
-###As a customer, I should be able to view all my order history
-  def customer_orders
+
+  ###As a customer, I should be able to view all my order history
+  def order_history
     ##should return all the orders for this customer
     # orders
     # products = Customer.where(id:self.id).first.products #returns array
@@ -41,11 +51,20 @@ class Customer < ActiveRecord::Base
     # puts "CustomerId:#{self.id}"
     # puts "Customer Name: #{self.name}"
 
-    orders.each do |order|
+    self.orders.each do |order|
+      orderid=order.id
+      puts "**************************************************"
       puts "Order Id: #{order.id}"
-      products.each do |product|
-        puts "product name:#{product.name}  qty: #{}"
+      puts "Order date: #{order.created_at}"
+      puts "**************************************************"
+      self.orderproducts.each do |orderproduct|
+        if orderproduct.order_id == orderid
+          puts "product name: #{Product.where(id:orderproduct.product_id).first.name}   Qty:   #{orderproduct.ordered_qty}"
+        end
       end
+      puts "--------------------------------------------------"
+      puts "Order Total: #{order.order_total}"
+      puts "--------------------------------------------------"
     end
     #expected outputs:
     #Customer ID:/

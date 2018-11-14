@@ -14,9 +14,6 @@ require "highline/import"
 # IRB.start(__FILE__)
 # Basic usage
 
-
-@C = 299792458
-
 def customer_login_prompt
   c_username = ask("Enter your username? ", String)
   c_password = ask("Enter your password:  ") { |q| q.echo = "*" }
