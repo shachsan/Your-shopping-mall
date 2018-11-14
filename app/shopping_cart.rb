@@ -2,8 +2,8 @@
 require "highline/import"
 
 
-def shopping_cart(active_customer)
-
+def shopping_cart(customer)
+  system('clear')
   shopping_cart = []
   order_in_progress = nil
   while order_in_progress != "2" && order_in_progress != "checkout"

@@ -1,9 +1,10 @@
 
 require "highline/import"
+# require "tty-prompt"
 require_relative "../app/shopping_cart.rb"
 
-
-def menu
+# prompt = TTY::Prompt.new
+def menu(customer)
   system('clear')
   puts "welcome, we have the biggest selection. please chooose a product from the list"
 
@@ -16,35 +17,30 @@ def menu
   puts "6. Log Out"
 
   puts
-  loop do
+
     customer_menu_choice = ask("Please select from above menu")
     case customer_menu_choice
-      when 1
+      when "1"
         "Coming Soon"
-      when 2
-        
-      when 3
-        self.order_history
-      when 4
-        "The tank is almost full."
-      when 5
+      when "2"
+        shopping_cart(customer)
+      when "3"
+        customer.order_history
+      when "4"
+        "Coming Soon"
+      when "5"
         puts "Coming Soon"
-      when 6
+      when "6"
         puts "Thank you for your time with us!"
         puts "You are being logged out.... "
         sleep(5)
         prompt
-
       else
         "Please make correct choice by entering number for each menu option"
       end
-    end
-
-
 end
 
 def main_screen(customer)
-    active_customer = customer
-    menu
-    shopping_cart(active_customer)
+    menu(customer)
+    # shopping_cart(customer)
 end

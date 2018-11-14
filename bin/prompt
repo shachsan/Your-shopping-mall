@@ -5,6 +5,8 @@ require_relative "../config/environment"
 require_relative "../app/main_screen.rb"
 
 
+
+
 def customer_login_prompt
   c_username = ask("Enter your username? ", String)
   c_password = ask("Enter your password:  ") { |q| q.echo = "*" }
@@ -28,7 +30,6 @@ def admin_login_prompt
   #if it returns data then greet admin with name and display admin menu
   #if it returns nil/empty, puts incorrect username and password and prompt to reenter the credentials
 end
-
 begin
   puts
   # loop do
