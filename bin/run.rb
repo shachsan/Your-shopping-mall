@@ -1,6 +1,7 @@
 require_relative "run_helper.rb"
-require_relative "../app/models.customer.rb"
-require_relative "../app/models.product.rb"
+require_relative "../app/models/customer.rb"
+require_relative "../app/models/product.rb"
+require_relative "../config/environment"
 
 shopping_cart = []
 

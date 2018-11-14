@@ -7,7 +7,7 @@
 # )
 # require_all 'app'
 
-
+require '../bin/run'
 require 'bundler/setup'
 require "sinatra/activerecord"
 Bundler.require
