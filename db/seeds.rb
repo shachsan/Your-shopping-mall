@@ -40,12 +40,12 @@ Product.create(name: "iPad Air", price: 450, quantity: 20, category_id: 5 )
 #   t.string "name"
 # end
 
-Customer.create(name: "John")
-Customer.create(name: "Sanjay")
-Customer.create(name: "Eric")
-Customer.create(name: "Tony")
-Customer.create(name: "Eizik")
-Customer.create(name: "Kevin")
+Customer.create(name: "John", username: "john", password:"password")
+Customer.create(name: "Sanjay", username: "sanjay", password:"password")
+Customer.create(name: "Eric", username: "eric", password:"password")
+Customer.create(name: "Tony", username: "tony", password:"password")
+Customer.create(name: "Eizik", username: "eizik", password:"password")
+Customer.create(name: "Kevin", username: "kevin", password:"password")
 #
 # create_table "orderproducts"
 #   t.integer "order_id"

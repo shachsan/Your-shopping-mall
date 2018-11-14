@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   has_many :orderproducts
   has_many :products, through: :orderproducts
+<<<<<<< HEAD
 
 
 
@@ -30,4 +31,6 @@ class Order < ActiveRecord::Base
     #Products list with qty
     #Order Total
   end
+=======
+>>>>>>> sanjay
 end

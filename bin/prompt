@@ -2,6 +2,8 @@
 
 require_relative "../config/environment"
 require "highline/import"
+require_relative "../config/environment"
+require_relative "main_screen.rb"
 # require "your_shopping_mall"
 
 
@@ -11,8 +13,14 @@ def customer_login_prompt
 
   puts "ESC any time to return to main screen"
 
+<<<<<<< HEAD
   if Customer.validate_login(c_username, c_password)
     #if true
+=======
+  customer = Customer.validate_login(c_username, c_password)
+  if customer
+    shopping_cart(customer)
+>>>>>>> sanjay
   else
     puts "Incorrect username or password. Please re-enter your login credentials:"
     customer_login_prompt
@@ -30,12 +38,12 @@ end
 
 begin
   puts
-  loop do
+  # loop do
     choose do |menu|
       menu.prompt = "Please select to log in: "
       menu.choice(:Customer) { customer_login_prompt() }
       menu.choice(:Adminstrator) { admin_login_prompt() }
       menu.choice(:Quit, "Exit program.") { exit }
     end
-  end
+  # end
 end

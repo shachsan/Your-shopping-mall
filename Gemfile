@@ -10,6 +10,7 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'highline'
+gem 'table_print'
 
 group :test do
   gem 'rspec'
