@@ -1,27 +1,24 @@
 #!/usr/bin/env ruby
 
+require_relative "../config/environment"
 require "highline/import"
 # require "your_shopping_mall"
-#
-# # You can add fixtures and/or initialization code here to make experimenting
-# # with your gem easier. You can also use a different console, if you like.
-#
-# # (If you use this, don't forget to add pry to your Gemfile!)
-# # require "pry"
-# # Pry.start
-#
-# require "irb"
-# IRB.start(__FILE__)
-# Basic usage
+
 
 def customer_login_prompt
   c_username = ask("Enter your username? ", String)
   c_password = ask("Enter your password:  ") { |q| q.echo = "*" }
-  ##Query through the customers table with given username and password
-  #if it returns data then greet customer with customer name and display customer menu
-  #if it returns nil/empty, puts incorrect username and password and prompt to reenter the credentials
 
+  puts "ESC any time to return to main screen"
+
+  if Customer.validate_login(c_username, c_password)
+    #if true
+  else
+    puts "Incorrect username or password. Please re-enter your login credentials:"
+    customer_login_prompt
+  end
 end
+
 
 def admin_login_prompt
   a_username = ask("Enter your username? ", String)

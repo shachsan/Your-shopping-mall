@@ -6,6 +6,11 @@ class Customer < ActiveRecord::Base
 
   @@order_total = 0
 
+
+  def self.validate_login(username, password)
+    self.find_by(username:username, password:password)
+  end
+
   # def self.order_total
   #   @@order_total
   # end
@@ -30,16 +35,28 @@ class Customer < ActiveRecord::Base
       puts "******************************"
   end
 
-  def place_order(customer_items)#[[product_id, qty]]
-    orderid = Order.create(customer_id:self.id, order_total:@@order_total).id
-    # binding.pry
-    customer_items.each do |item_qty|
-      Orderproduct.create(order_id:orderid, product_id:item_qty[0], ordered_qty:item_qty[1])
-      update_qty = Product.where(id:item_qty[0]).first.quantity -= item_qty[1]
-      Product.where(id:item_qty[0]).first.update(quantity:update_qty)
-    end
 
+  def create_order(shopping_cart)
+    #is being passed the item id and quantity
+    orderid = Order.create(customer_id: self.id).id
+    shopping_cart.each do |product|
+      Orderproduct.create(order_id: orderid, product_id: product[:id], ordered_qty: product[:quantity])
+      update_qty = Product.where(id: product[:id]).first.quantity - product[:quantity]
+      Product.where(id: product[:id]).first.update(quantity: update_qty)
+    end
   end
+
+
+  # def place_order(customer_items)#[[product_id, qty]]
+  #   orderid = Order.create(customer_id:self.id, order_total:@@order_total).id
+  #   # binding.pry
+  #   customer_items.each do |item_qty|
+  #     Orderproduct.create(order_id:orderid, product_id:item_qty[0], ordered_qty:item_qty[1])
+  #     update_qty = Product.where(id:item_qty[0]).first.quantity -= item_qty[1]
+  #     Product.where(id:item_qty[0]).first.update(quantity:update_qty)
+  #   end
+  #
+  # end
 
 
   ###As a customer, I should be able to view all my order history

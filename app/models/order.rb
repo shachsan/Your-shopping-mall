@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
   has_many :orderproducts
   has_many :products, through: :orderproducts
 
+
+
   ###As a customer, I should be able to view all my order history
   def self.customer_orders(customerId)
     ##should return all the orders for this customer
