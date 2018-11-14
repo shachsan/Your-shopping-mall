@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :orderproducts
 
   def self.all_products
+    system('clear')
     tp self.select(:id, :name, :price), :except=>[:quantity, :category_id]
   end
 
