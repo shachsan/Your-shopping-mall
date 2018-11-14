@@ -6,6 +6,10 @@ class Customer < ActiveRecord::Base
 
   @@order_total = 0
 
+    def self.validate_login(username, password)
+      self.find_by(username:username, password:password)
+    end
+
   # def self.order_total
   #   @@order_total
   # end

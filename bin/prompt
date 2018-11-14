@@ -2,6 +2,7 @@
 
 require "highline/import"
 require_relative "../config/environment"
+require_relative "main_screen.rb"
 # require "your_shopping_mall"
 #
 # # You can add fixtures and/or initialization code here to make experimenting
@@ -21,8 +22,9 @@ def customer_login_prompt
 
   puts "ESC any time to return to main screen"
 
-  if Customer.validate_login(c_username, c_password)
-    #if true
+  customer = Customer.validate_login(c_username, c_password)
+  if customer
+    shopping_cart(customer)
   else
     puts "Incorrect username or password. Please re-enter your login credentials:"
     customer_login_prompt
