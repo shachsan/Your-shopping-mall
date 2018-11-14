@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "highline/import"
+require_relative "../config/environment"
 # require "your_shopping_mall"
 #
 # # You can add fixtures and/or initialization code here to make experimenting
@@ -38,12 +39,12 @@ end
 
 begin
   puts
-  loop do
+  # loop do
     choose do |menu|
       menu.prompt = "Please select to log in: "
       menu.choice(:Customer) { customer_login_prompt() }
       menu.choice(:Adminstrator) { admin_login_prompt() }
       menu.choice(:Quit, "Exit program.") { exit }
     end
-  end
+  # end
 end
