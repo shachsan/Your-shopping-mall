@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 9) do
+ActiveRecord::Schema.define(version: 10) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 9) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
+    t.string "username"
+    t.string "password"
   end
 
   create_table "orderproducts", force: :cascade do |t|
