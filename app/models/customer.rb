@@ -38,7 +38,7 @@ class Customer < ActiveRecord::Base
       if proceed_order == "1"
         place_order(customer_items)
       else
-        menu
+        main_screen(self) # Go back to main screen
       end
 
   end
@@ -51,6 +51,8 @@ class Customer < ActiveRecord::Base
       update_qty = Product.where(id:item_qty[0]).first.quantity -= item_qty[1]
       Product.where(id:item_qty[0]).first.update(quantity:update_qty)
     end
+    system('clear')
+    puts "Thank You! for placing order with us. Your order is currently being processed"
 
   end
 
@@ -79,12 +81,7 @@ class Customer < ActiveRecord::Base
       puts "Order Total: #{order.order_total}"
       puts "--------------------------------------------------"
     end
-    #expected outputs:
-    #Customer ID:/
-    #Customer Name:
-    #Order ID:
-    #Products list with qty
-    #Order Total
+
   end
 
 end

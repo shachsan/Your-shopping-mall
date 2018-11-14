@@ -13,12 +13,38 @@ def menu
   puts "3. Check your order history"
   puts "4. Return items"
   puts "5. Contact Us"
-  puts "6. Exit"
+  puts "6. Log Out"
 
-  
+  puts
+  loop do
+    customer_menu_choice = ask("Please select from above menu")
+    case customer_menu_choice
+      when 1
+        "Coming Soon"
+      when 2
+        
+      when 3
+        self.order_history
+      when 4
+        "The tank is almost full."
+      when 5
+        puts "Coming Soon"
+      when 6
+        puts "Thank you for your time with us!"
+        puts "You are being logged out.... "
+        sleep(5)
+        prompt
+
+      else
+        "Please make correct choice by entering number for each menu option"
+      end
+    end
+
+
 end
 
 def main_screen(customer)
+    active_customer = customer
     menu
-    shopping_cart(customer)
+    shopping_cart(active_customer)
 end

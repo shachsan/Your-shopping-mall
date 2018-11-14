@@ -11,6 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'highline'
 gem 'table_print'
+gem 'tty-prompt'
 
 group :test do
   gem 'rspec'

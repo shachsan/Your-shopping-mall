@@ -2,14 +2,9 @@
 require "highline/import"
 
 
-def shopping_cart(customer)
+def shopping_cart(active_customer)
 
   shopping_cart = []
-
-
-
-  # puts "#{Product.all.name}"
-
   order_in_progress = nil
   while order_in_progress != "2" && order_in_progress != "checkout"
     user_item = ask("Enter product name:", String)
@@ -25,15 +20,6 @@ def shopping_cart(customer)
     order_in_progress = ask("1. continue      2. checkout")
   end
 
-  customer.customer_selection(shopping_cart)
+  customer.customer_selection(shopping_cart) # This method is inside the Customer class
 
-
-  #end of shopping
-
-#   customer.create_order(shopping_cart)
-#
-#   order_total(shopping_cart).each do |key, value|
-#   puts "#{key} at #{value}"
-#
-#   end
 end
