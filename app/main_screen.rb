@@ -17,7 +17,8 @@ def main_menu#(customer)
       "Order Status",
       "Return items",
       "Contact Us",
-      "Log Out"
+      "Log Out",
+      "Exit"
     ])
 
   puts
@@ -36,11 +37,28 @@ def main_menu#(customer)
         $customer.order_history
       when "Order Status"
         puts "Coming Soon"
+        puts
+        puts "redirecting to main menu ...."
+        sleep(3)
+        main_menu
       when "Return items"
         puts "Coming Soon"
+        puts
+        puts "redirecting to main menu ...."
+        sleep(3)
+        main_menu
       when "Log Out"
         CommonMethods.logout
       when "Contact Us"
         puts "Coming Soon"
+        puts
+        puts "redirecting to main menu ...."
+        sleep(3)
+        main_menu
+
+      when "Exit"
+        puts "Good Bye! See You Soon!"
+        sleep(3)
+        exit
       end
 end

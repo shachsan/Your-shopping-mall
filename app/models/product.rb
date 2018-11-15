@@ -15,13 +15,21 @@ class Product < ActiveRecord::Base
   def self.check_price
     prompt = TTY::Prompt.new
     arg = prompt.ask("Enter product id or item name:")
-    if arg.is_a?Integer
-      item = self.find_by(id:arg)
-      item.nil? ? "item not found":item.price
-    elsif arg.is_a?String
+    # binding.pry
+    if arg.count("a-zA-Z")== 0
+      item = self.find_by(id:arg.to_i)
+      item.nil? ? puts "item not found" : puts "Item: #{item.name} Price: $#{item.price}"
+      puts "integer"
+      # binding.pry
+    elsif arg.count("a-zA-Z") == arg.chars.count
       item = self.find_by(name:arg)
-      item.nil? ? "item not found":item.price
+      item.nil? ? puts "item not found" : puts "Item: #{item.name} Price: $#{item.price}"
+      puts "string"
+    else
+      puts "Please enter valid name"
     end
+    # binding.pry
+    # 0
   end
 
 
