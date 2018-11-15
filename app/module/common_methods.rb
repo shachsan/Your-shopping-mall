@@ -53,8 +53,7 @@ module CommonMethods
     end
 
     def self.shopping_inprogress
-      binding.pry
-      if !$shopping_cart_inprogress
+      if $shopping_cart_inprogress.empty?
         puts "You do not have anything in your shopping cart"
         puts "You are being directed to Main Menu"
         sleep(2)
@@ -62,6 +61,7 @@ module CommonMethods
       else
         $customer.customer_selection($shopping_cart_inprogress)
       end
+
     end
 
 

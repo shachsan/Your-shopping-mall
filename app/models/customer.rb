@@ -24,6 +24,7 @@ class Customer < ActiveRecord::Base
     system('clear')
     puts "Your Shopping Cart"
     puts "*"*40
+    total_qty = customer_items.map{|arr|arr.last}.reduce(:+)
       # binding.pry
     customer_items.each do |item_qty|
       puts "ProductId: #{item_qty[0]}"
@@ -32,8 +33,9 @@ class Customer < ActiveRecord::Base
       @@order_total += Product.where(id:item_qty[0]).first.price * item_qty[1]
 
     end
+
       puts "*"*70
-      puts "Order Total: #{@@order_total}    Total item:#{customer_items.count}"
+      puts "Order Total: #{@@order_total} ||  Total Unique item:#{customer_items.count} || Total Qty: #{total_qty}"
       puts "*"*70
       puts
       proceed_order = prompt.select("Would you like to proceed with this order?",
@@ -50,7 +52,9 @@ class Customer < ActiveRecord::Base
 
   end
 
-  def place_order(customer_items)#[[product_id, qty]]
+
+  ##Order created in database
+  def place_order(customer_items)
     prompt = TTY::Prompt.new
     orderid = Order.create(customer_id:self.id, order_total:@@order_total).id
     customer_items.each do |item_qty|
@@ -63,6 +67,7 @@ class Customer < ActiveRecord::Base
     puts "Thank You! for placing order with us. Your order is currently being processed"
     puts
     puts "Your Order Number is: #{orderid}"
+    puts "Amount Paid: #{@@order_total}"
     puts "*"*35
     user_selection_after_placing_order = prompt.select("What would like to do from here?", ["Main Menu", "Log Out", "Exit"])
 
@@ -91,10 +96,10 @@ class Customer < ActiveRecord::Base
         end
       end
       puts "*"*50
-      puts "Order Total: #{order.order_total}"
+      puts "Order Total: $#{order.order_total}"
       puts "*"*50
     end
-    print "Total Number of Orders: #{self.orderproducts.count}    "
+    print "Total Number of Orders: #{self.orderproducts.count} ||   "
     # binding.pry
     print "Total Spent: #{self.orders.map{|order|order.order_total}.compact.reduce(:+)}"
     puts
