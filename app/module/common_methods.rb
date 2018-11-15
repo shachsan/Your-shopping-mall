@@ -2,7 +2,7 @@ module CommonMethods
 
     def self.logout
       $customer = nil
-      $shopping_cart_inprogress
+      $shopping_cart_inprogress = nil
       puts "Thank you for your time with us!"
       puts "You are being logged out.... "
       sleep(3)
@@ -11,6 +11,8 @@ module CommonMethods
 
     def self.order_menu
       prompt = TTY::Prompt.new
+      puts
+      puts "-"*50
       customer_choice = prompt.select('What would you like to do?') do |menu|
         menu.choice name: 'Place order from this catelog',  value: 1
         menu.choice name: 'Go back to Catelog', value: 2 #disabled: '(out of stock)'
@@ -18,7 +20,7 @@ module CommonMethods
         menu.choice name: 'Exit',  value: 4
       end
       if customer_choice == 1
-          $shopping_cart_inprogress = prompt.collect do
+          customer_pick = prompt.collect do
 
 
             begin
@@ -31,7 +33,7 @@ module CommonMethods
           end
             # binding.pry
 
-        $shopping_cart_inprogress = $shopping_cart_inprogress[:cart].map{|order|order.values}
+        $shopping_cart_inprogress = customer_pick[:cart].map{|order|order.values}
         shopping_inprogress
       end
     end

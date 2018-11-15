@@ -23,11 +23,14 @@ class Customer < ActiveRecord::Base
     system('clear')
     puts "Your Shopping Cart"
     puts "*"*30
+      # binding.pry
     customer_items.each do |item_qty|
       puts "ProductId: #{item_qty[0]}"
       puts "Product Name: #{Product.where(id:item_qty[0]).first.name}"
       puts "Qty: #{item_qty[1]}"
       @@order_total += Product.where(id:item_qty[0]).first.price * item_qty[1]
+
+      0
     end
       puts "*"*50
       puts "Order Total: #{@@order_total}"
@@ -54,9 +57,13 @@ class Customer < ActiveRecord::Base
       Orderproduct.create(order_id:orderid, product_id:item_qty[0], ordered_qty:item_qty[1])
       update_qty = Product.where(id:item_qty[0]).first.quantity -= item_qty[1]
       Product.where(id:item_qty[0]).first.update(quantity:update_qty)
+      $shopping_cart_inprogress = nil
     end
     system('clear')
     puts "Thank You! for placing order with us. Your order is currently being processed"
+    puts
+    puts "Your Order Number is: #{orderid}"
+    puts "*"*35
     user_selection_after_placing_order = prompt.select("What would like to do from here?", ["Main Menu", "Log Out", "Exit"])
 
     if user_selection_after_placing_order == "Main Menu"
@@ -65,7 +72,7 @@ class Customer < ActiveRecord::Base
       CommonMethods.logout
     elsif user_selection_after_placing_order == "Exit"
       exit
-    end 
+    end
   end
 
 

@@ -6,6 +6,7 @@ require_relative "../app/main_screen.rb"
 
 
 $customer=nil
+# $shopping_cart_inprogress
 
 def customer_login_prompt
   prompt = TTY::Prompt.new
