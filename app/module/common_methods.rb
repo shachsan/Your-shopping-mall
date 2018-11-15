@@ -33,7 +33,7 @@ module CommonMethods
           end
             # binding.pry
 
-        $shopping_cart_inprogress = customer_pick[:cart].map{|order|order.values}
+        $shopping_cart_inprogress += customer_pick[:cart].map{|order|order.values}
         shopping_inprogress
       end
     end

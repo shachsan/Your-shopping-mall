@@ -10,14 +10,15 @@ $customer=nil
 
 def customer_login_prompt
   prompt = TTY::Prompt.new
-  c_username = prompt.ask("Enter your username? ", String)
-  c_password = prompt.ask("Enter your password: ", echo: true, mask:'*')
+  c_username = prompt.ask("Enter your username: ", String)
+  c_password = prompt.mask("Enter your password: ")
 
   puts "ESC any time to return to main screen"
 
   $customer = Customer.validate_login(c_username, c_password)
   # binding.pry
   if $customer
+    $shopping_cart_inprogress = []
     main_menu#($customer)
 
   else
