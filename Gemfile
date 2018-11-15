@@ -12,6 +12,7 @@ gem 'pry'
 gem 'highline'
 gem 'table_print'
 gem 'tty-prompt'
+gem 'colorize', '~> 0.8.1'
 
 group :test do
   gem 'rspec'

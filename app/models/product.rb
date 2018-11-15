@@ -3,12 +3,16 @@ class Product < ActiveRecord::Base
   has_many :orderproducts
   has_many :orders, through: :orderproducts
 
-  def self.all_products
+  def self.all_products(category_id)
+    prompt = TTY::Prompt.new
     system('clear')
-    tp self.select(:id, :name, :price), :except=>[:quantity, :category_id]
+    category_items = self.where(category_id:category_id)
+    tp category_items.select(:id, :name, :price), :except=>[:quantity, :category_id]
   end
 
-  def self.check_price(arg)
+  def self.check_price
+    prompt = TTY::Prompt.new
+    arg = prompt.ask("Enter product id or item name:")
     if arg.is_a?Integer
       item = self.find_by(id:arg)
       item.nil? ? "item not found":item.price

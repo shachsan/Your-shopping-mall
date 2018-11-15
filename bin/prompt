@@ -5,7 +5,7 @@ require_relative "../config/environment"
 require_relative "../app/main_screen.rb"
 
 
-
+$customer=nil
 
 def customer_login_prompt
   c_username = ask("Enter your username? ", String)
@@ -13,9 +13,10 @@ def customer_login_prompt
 
   puts "ESC any time to return to main screen"
 
-  customer = Customer.validate_login(c_username, c_password)
-  if customer
-    main_screen(customer)
+  $customer = Customer.validate_login(c_username, c_password)
+  # binding.pry
+  if $customer
+    main_menu#($customer)
 
   else
     puts "Incorrect username or password. Please re-enter your login credentials:"
