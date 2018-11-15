@@ -18,7 +18,7 @@ def shopping_cart#(customer)
       next
     end
     # binding.pry
-    order_in_progress = ask("1. continue      2. checkout")
+    order_in_progress = prompt.ask("1. continue      2. checkout")
   end
 
   $customer.customer_selection(shopping_cart) # This method is inside the Customer class

@@ -33,12 +33,16 @@ class Customer < ActiveRecord::Base
       puts "Order Total: #{@@order_total}"
       puts "*"*50
       puts
-      proceed_order = prompt.select("Would you like to proceed with this order?", %w(Yes Cancel))
+      proceed_order = prompt.select("Would you like to proceed with this order?",
+        ["Yes", "Continue Shopping", "Main Menu", "Will return back soon"])
 
       if proceed_order == "Yes"
-        place_order(customer_items)
-      else
+        $cusomter.place_order(customer_items)
+      elsif proceed_order == "Continue Shopping" || proceed_order == "Main Menu"
         main_menu # Go back to main screen
+      elsif proceed_order == "Will return back soon"
+        puts "Please note, your shopping cart will not be saved after you exit"
+        CommonMethods.logout
       end
 
   end

@@ -2,6 +2,7 @@ module CommonMethods
 
     def self.logout
       $customer = nil
+      $shopping_cart_inprogress
       puts "Thank you for your time with us!"
       puts "You are being logged out.... "
       sleep(3)
@@ -17,7 +18,7 @@ module CommonMethods
         menu.choice name: 'Exit',  value: 4
       end
       if customer_choice == 1
-          shopping_cart = prompt.collect do
+          $shopping_cart_inprogress = prompt.collect do
 
 
             begin
@@ -29,9 +30,20 @@ module CommonMethods
             end while prompt.yes?("continue shopping?"){|q|q.suffix 'Yes/Done'}
           end
             # binding.pry
-        shopping_cart = shopping_cart[:cart].map{|order|order.values}
-        binding.pry
-        0
+
+        $shopping_cart_inprogress = $shopping_cart_inprogress[:cart].map{|order|order.values}
+        shopping_inprogress
+      end
+    end
+
+    def self.shopping_inprogress
+      if !$shopping_cart_inprogress
+        puts "You do not have anything in your shopping cart"
+        puts "You are being directed to Main Menu"
+        sleep(2)
+        main_menu
+      else
+        $customer.customer_selection($shopping_cart_inprogress)
       end
     end
 

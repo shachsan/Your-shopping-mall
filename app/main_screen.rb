@@ -12,6 +12,7 @@ def main_menu#(customer)
     ["Shop from our catalog",
       "Shop by Product Name",
       "Check Price",
+      "View Shopping Cart",
       "Check your order history",
       "Order Status",
       "Return items",
@@ -29,6 +30,8 @@ def main_menu#(customer)
         shopping_cart
       when "Check Price"
         Product.check_price
+      when "View Shopping Cart"
+        CommonMethods.shopping_inprogress
       when "Check your order history"
         $customer.order_history
       when "Order Status"
