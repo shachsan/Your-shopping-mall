@@ -37,7 +37,7 @@ class Customer < ActiveRecord::Base
         ["Yes", "Continue Shopping", "Main Menu", "Will return back soon"])
 
       if proceed_order == "Yes"
-        $cusomter.place_order(customer_items)
+        $customer.place_order(customer_items)
       elsif proceed_order == "Continue Shopping" || proceed_order == "Main Menu"
         main_menu # Go back to main screen
       elsif proceed_order == "Will return back soon"
@@ -48,6 +48,7 @@ class Customer < ActiveRecord::Base
   end
 
   def place_order(customer_items)#[[product_id, qty]]
+    prompt = TTY::Prompt.new
     orderid = Order.create(customer_id:self.id, order_total:@@order_total).id
     customer_items.each do |item_qty|
       Orderproduct.create(order_id:orderid, product_id:item_qty[0], ordered_qty:item_qty[1])
@@ -56,8 +57,15 @@ class Customer < ActiveRecord::Base
     end
     system('clear')
     puts "Thank You! for placing order with us. Your order is currently being processed"
-    main_menu
+    user_selection_after_placing_order = prompt.select("What would like to do from here?", ["Main Menu", "Log Out", "Exit"])
 
+    if user_selection_after_placing_order == "Main Menu"
+      main_menu
+    elsif user_selection_after_placing_order == "Log Out"
+      CommonMethods.logout
+    elsif user_selection_after_placing_order == "Exit"
+      exit
+    end 
   end
 
 
