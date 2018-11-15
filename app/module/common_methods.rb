@@ -1,5 +1,19 @@
 module CommonMethods
 
+    def self.control_menu
+      prompt = TTY::Prompt.new
+      control = prompt.select("",["Main Menu", "Exit"])
+      if control == "Main Menu"
+        main_menu
+      elsif "Exit"
+        puts "Good Bye! See You Soon!"
+        sleep(3)
+        exit
+      end
+
+
+    end
+
     def self.logout
       $customer = nil
       $shopping_cart_inprogress = nil
@@ -39,6 +53,7 @@ module CommonMethods
     end
 
     def self.shopping_inprogress
+      binding.pry
       if !$shopping_cart_inprogress
         puts "You do not have anything in your shopping cart"
         puts "You are being directed to Main Menu"

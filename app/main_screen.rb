@@ -1,10 +1,8 @@
 
-# require "highline/import"
-# require "tty-prompt"
 require_relative "../app/shopping_cart.rb"
 require_relative "./module/common_methods.rb"
-# prompt = TTY::Prompt.new
-def main_menu#(customer)
+
+def main_menu
   prompt = TTY::Prompt.new
   system('clear')
   puts "welcome, we have the biggest selection. please chooose a product from the list"
@@ -23,7 +21,6 @@ def main_menu#(customer)
 
   puts
 
-    # customer_menu_choice = ask("Please select from above menu")
     case menu_opt
       when "Shop from our catalog"
         Category.all_category
