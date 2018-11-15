@@ -1,5 +1,5 @@
 
-require "highline/import"
+# require "highline/import"
 
 
 def shopping_cart#(customer)
@@ -23,4 +23,7 @@ def shopping_cart#(customer)
 
   $customer.customer_selection(shopping_cart) # This method is inside the Customer class
 
+end
+def shop_from_catelog
+  puts "Please enter product id and qty "
 end

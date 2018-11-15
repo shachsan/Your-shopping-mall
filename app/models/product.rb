@@ -4,10 +4,14 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :orderproducts
 
   def self.all_products(category_id)
+
     prompt = TTY::Prompt.new
     system('clear')
     category_items = self.where(category_id:category_id)
     tp category_items.select(:id, :name, :price), :except=>[:quantity, :category_id]
+    CommonMethods.order_menu
+
+
   end
 
   def self.check_price

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "highline/import"
+# require "highline/import"
 require_relative "../config/environment"
 require_relative "../app/main_screen.rb"
 
@@ -8,8 +8,9 @@ require_relative "../app/main_screen.rb"
 $customer=nil
 
 def customer_login_prompt
-  c_username = ask("Enter your username? ", String)
-  c_password = ask("Enter your password:  ") { |q| q.echo = "*" }
+  prompt = TTY::Prompt.new
+  c_username = prompt.ask("Enter your username? ", String)
+  c_password = prompt.ask("Enter your password: ", echo: true, mask:'*')
 
   puts "ESC any time to return to main screen"
 
@@ -25,20 +26,29 @@ def customer_login_prompt
 end
 
 def admin_login_prompt
-  a_username = ask("Enter your username? ", String)
-  a_password = ask("Enter your password:  ") { |q| q.echo = "*" }
+  prompt = TTY::Prompt.new
+  a_username = prompt.ask("Enter your username? ", String)
+  a_password = prompt.ask("Enter your password:  ") { |q| q.echo = "*" }
   ##Query through the admin table with given username and password
   #if it returns data then greet admin with name and display admin menu
   #if it returns nil/empty, puts incorrect username and password and prompt to reenter the credentials
 end
 begin
+  prompt = TTY::Prompt.new
   puts
+  system('clear')
   # loop do
-    choose do |menu|
-      menu.prompt = "Please select to log in: "
+    prompt.select('Please select to log in: ') do |menu|
       menu.choice(:Customer) { customer_login_prompt() }
       menu.choice(:Adminstrator) { admin_login_prompt() }
-      menu.choice(:Quit, "Exit program.") { exit }
+      menu.choice(:Quit) { exit }
     end
   # end
 end
+
+#
+# prompt.select('What size?') do |menu|
+#   menu.choice 'small', 1
+#   menu.choice 'medium', 2, disabled: '(out of stock)'
+#   menu.choice 'large', 3
+# end

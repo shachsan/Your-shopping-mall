@@ -1,5 +1,5 @@
 
-require "highline/import"
+# require "highline/import"
 require_relative "../main_screen.rb"
 
 class Customer < ActiveRecord::Base
