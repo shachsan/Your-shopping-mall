@@ -50,6 +50,16 @@ module CommonMethods
         $shopping_cart_inprogress += customer_pick[:cart].map{|order|order.values}
         shopping_inprogress
       end
+      if customer_choice == 3
+        main_menu
+      end
+
+      if customer_choice == 2
+        Category.all_category
+      end
+      if customer_choice == 4
+        exit
+      end
     end
 
     def self.shopping_inprogress
