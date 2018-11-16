@@ -115,4 +115,23 @@ class Customer < ActiveRecord::Base
 
   end
 
+  def self.take_new_user_info
+    prompt = TTY::Prompt.new
+    user_info = key(:new_customer).values do
+      key(:name).ask('Enter your name:', required: true)
+      key(:username).ask('Enter username:', required: true)
+      key(:password).ask('Enter password:', required: true)
+    end
+    user_info
+  end
+
+
+  def self.sign_up
+    prompt = TTY::Prompt.new
+    user_info = take_new_user_info
+    user_exist = self.where(username:user_info[:username])
+    if user_exist
+      prompt.ask("Username already taken. Please select new username")
+  end
+
 end
