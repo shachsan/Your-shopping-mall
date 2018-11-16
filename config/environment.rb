@@ -17,3 +17,4 @@ Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| requir
 connection_details = YAML::load(File.open('config/database.yml'))
 ActiveRecord::Base.establish_connection(connection_details)
 ActiveRecord::Base.logger = nil
+# config.time_zone = 'Eastern Time (US & Canada)'

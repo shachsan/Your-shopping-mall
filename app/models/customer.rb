@@ -132,6 +132,7 @@ class Customer < ActiveRecord::Base
     user_exist = self.where(username:user_info[:username])
     if user_exist
       prompt.ask("Username already taken. Please select new username")
+    end
   end
 
 end
